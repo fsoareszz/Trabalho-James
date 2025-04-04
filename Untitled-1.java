@@ -19,4 +19,15 @@ public static void main(String[] args) {
     System.out.print("Digite a porta para enviar mensagens: ");
     int portaEnviar = scanner.nextInt();
 
+    new Thread(new ReceberMensagens(portaReceber)).start();
+    
+    try{ 
+        Thread.sleep(1000);
+    } catch(IterruptedException e){ 
+        System.err.println("Erro ao esperar: " + e.getMessage());
+    }
+
+    enviarMensagens(enderecoOUtroCliente, portaEnviar);
+    
+    scanner.close();
 }
